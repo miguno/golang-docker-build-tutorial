@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"encoding/json"
 )
 
 type Response struct {
