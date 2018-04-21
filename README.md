@@ -10,6 +10,8 @@ The Docker build uses a [multi-stage build setup](https://docs.docker.com/develo
 to minimize the size of the generated Docker image.  The Go build uses [dep](https://github.com/golang/dep) for
 dependency management.
 
+> **Java developer?** Check out https://github.com/miguno/java-docker-build-tutorial
+
 
 # Requirements
 
