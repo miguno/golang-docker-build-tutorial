@@ -6,27 +6,42 @@
 A template project to create a Docker image for a Go application.
 The example application exposes an HTTP endpoint.
 
-The Docker build uses a [multi-stage build setup](https://docs.docker.com/develop/develop-images/multistage-build/)
-to minimize the size of the generated Docker image.  The Go build uses [dep](https://github.com/golang/dep) for
-dependency management.
-
 > **Java developer?** Check out https://github.com/miguno/java-docker-build-tutorial
 
+Features:
+
+* The Docker build uses a
+  [multi-stage build setup](https://docs.docker.com/build/building/multi-stage/)
+  to minimize the size of the generated Docker image, which is 5MB
+* Golang 1.19
+* Supports [Docker BuildKit](https://docs.docker.com/build/)
 
 # Requirements
 
-Docker must be installed. That's it. You do not need to have Go installed.
-
+Docker must be installed on your local machine. That's it. You do not need to
+have Go installed.
 
 # Usage and Demo
 
 **Step 1:** Create the Docker image according to [Dockerfile](Dockerfile).
-This step uses Maven to build, test, and package the [Go application](app.go).
-The resulting image is 7MB in size.
+This step builds, tests, and packages the [Go application](app.go).
+The resulting image is 5MB in size.
 
 ```shell
-# This may take a few minutes.
-$ docker build -t miguno/golang-docker-build-tutorial:latest .
+# ***Creating an image may take a few minutes!***
+$ docker build --platform linux/x86_64/v8 -t miguno/golang-docker-build-tutorial:latest .
+
+# You can also build with the new BuildKit.
+# https://docs.docker.com/build/
+$ docker buildx build --platform linux/x86_64/v8 -t miguno/golang-docker-build-tutorial:latest .
+```
+
+Optionally, you can check the size of the generated Docker image:
+
+```shell
+$ docker images miguno/golang-docker-build-tutorial
+REPOSITORY                            TAG       IMAGE ID       CREATED          SIZE
+miguno/golang-docker-build-tutorial   latest    2de05b854c1b   11 minutes ago   4.78MB
 ```
 
 **Step 2:** Start a container for the Docker image.
@@ -35,13 +50,13 @@ $ docker build -t miguno/golang-docker-build-tutorial:latest .
 $ docker run -p 8123:8123 miguno/golang-docker-build-tutorial:latest
 ```
 
-**Step 3:** Open another terminal and access the example API endpoint.
+**Step 3:** Open another terminal and access the example API endpoint of the
+running container.
 
 ```shell
 $ curl http://localhost:8123/status
 {"status": "idle"}
 ```
-
 
 # Notes
 
