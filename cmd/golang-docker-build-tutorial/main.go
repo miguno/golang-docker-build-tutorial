@@ -6,17 +6,23 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+
+	internal "github.com/miguno/golang-docker-build-tutorial/internal/pkg"
 )
 
-// Response is just a very basic example.
+// Response is just a basic example.
 type Response struct {
 	Status string `json:"status,omitempty"`
 }
 
-// GetStatus returns always the same response.
 func GetStatus(w http.ResponseWriter, _ *http.Request) {
-	b := Response{Status: "idle"}
-	json.NewEncoder(w).Encode(b)
+	var response Response
+	if internal.IsIdleToyFunction() {
+		response = Response{Status: "idle"}
+	} else {
+		response = Response{Status: "busy"}
+	}
+	json.NewEncoder(w).Encode(response)
 }
 
 func main() {
