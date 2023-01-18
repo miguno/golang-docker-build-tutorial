@@ -1,3 +1,5 @@
+# This justfile requires https://github.com/casey/just
+
 timestamp := `date +%s`
 
 semver := "1.0.0-alpha"
