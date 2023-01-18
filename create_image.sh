@@ -14,4 +14,4 @@ echo "Building image '$IMAGE_NAME:$IMAGE_TAG'..."
 declare -r DOCKER_OPTIONS="--platform linux/x86_64/v8"
 # Use BuildKit, i.e. `buildx build` instead of just `build`
 # https://docs.docker.com/build/
-docker build $DOCKER_OPTIONS -t "$IMAGE_NAME":"$IMAGE_TAG" .
+docker buildx build $DOCKER_OPTIONS -t "$IMAGE_NAME":"$IMAGE_TAG" .
