@@ -17,4 +17,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag miguno/golang-docker-build-tutorial:$(date +%s)
+      run: docker buildx build . --file Dockerfile --tag miguno/golang-docker-build-tutorial:$(date +%s)
