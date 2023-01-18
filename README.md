@@ -61,8 +61,15 @@ $ curl http://localhost:8123/status
 # Notes
 
 You can run the Go application locally if you have Go installed.
+See [justfile](justfile) for additional commands and options.
 
 ```shell
-# Build and run the application
-$ go run app.go
+# Build
+$ go build -trimpath -ldflags="-w -s" -v -o app cmd/golang-docker-build-tutorial/main.go
+
+# Test
+$ go test -cover -v ./...
+
+# Run
+$ ./app
 ```
