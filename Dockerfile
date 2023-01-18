@@ -5,6 +5,7 @@
 
 # Stage 1 (to create a "build" image, ~850MB)
 FROM golang:1.19.5 AS builder
+# smoke test to verify if golang is available
 RUN go version
 
 COPY . /go/src/github.com/miguno/golang-docker-build-tutorial/
