@@ -9,4 +9,9 @@ declare -r IMAGE_NAME="miguno/golang-docker-build-tutorial"
 declare -r IMAGE_TAG="latest"
 
 echo "Building image '$IMAGE_NAME:$IMAGE_TAG'..."
-docker build -t "$IMAGE_NAME":"$IMAGE_TAG" .
+# Force x86_64 as the platform.  This workaround is needed on Apple Silicon
+# machines.  Details at https://stackoverflow.com/questions/70736928/.
+declare -r DOCKER_OPTIONS="--platform linux/x86_64/v8"
+# Use BuildKit, i.e. `buildx build` instead of just `build`
+# https://docs.docker.com/build/
+docker build $DOCKER_OPTIONS -t "$IMAGE_NAME":"$IMAGE_TAG" .
