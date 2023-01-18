@@ -13,9 +13,12 @@ RUN set -Eeux && \
     go mod download && \
     go mod verify
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
-    go build -trimpath -ldflags="-w -s -X 'main.Version=1.0.0-alpha'" \
-        -a -o app cmd/golang-docker-build-tutorial/main.go
+RUN GOOS=linux GOARCH=amd64 \
+    go build \
+        -trimpath \
+        -ldflags="-w -s -X 'main.Version=1.0.0-alpha'" \
+        -a \
+        -o app cmd/golang-docker-build-tutorial/main.go
 
 # Stage 2 (to create a downsized "container executable", ~7MB)
 
