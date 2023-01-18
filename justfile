@@ -8,7 +8,7 @@ coverage_profile_log := "coverage_profile.txt"
 
 # print available targets
 default:
-    just --list
+    @just --list --justfile {{justfile()}}
 
 # format source code
 format:
@@ -18,6 +18,10 @@ format:
 # detect outdated modules (requires https://github.com/psampaz/go-mod-outdated)
 outdated:
     go list -u -m -json all | go-mod-outdated -update
+
+# detect known vulnerabilities (requires https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck)
+vulnerabilities:
+    govulncheck ./...
 
 # detect known vulnerabilities (requires https://github.com/sonatype-nexus-community/nancy)
 audit:
@@ -62,14 +66,19 @@ run:
 # build executable for local OS
 build: test-vanilla
     @echo "Building executable for local OS ..."
-    go build -ldflags="-X 'main.Version={{version}}'" -o app cmd/golang-docker-build-tutorial/main.go
+    go build -trimpath -ldflags="-X 'main.Version={{version}}'" -o app cmd/golang-docker-build-tutorial/main.go
 
 # build release executables for all supported platforms
 release: test-vanilla
     @echo "Building release executables (incl. cross compilation) ..."
     # `go tool dist list` shows supported architectures (GOOS)
-    GOOS=darwin GOARCH=arm64 go build -ldflags "-X 'main.Version={{version}}' -s -w" -o app_macos-arm64 cmd/golang-docker-build-tutorial/main.go
-    GOOS=linux  GOARCH=386   go build -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-386   cmd/golang-docker-build-tutorial/main.go
-    GOOS=linux  GOARCH=amd64 go build -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-amd64 cmd/golang-docker-build-tutorial/main.go
-    GOOS=linux  GOARCH=arm   go build -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm   cmd/golang-docker-build-tutorial/main.go
-    GOOS=linux  GOARCH=arm64 go build -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm64 cmd/golang-docker-build-tutorial/main.go
+    GOOS=darwin GOARCH=arm64 \
+        go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_macos-arm64 cmd/golang-docker-build-tutorial/main.go
+    GOOS=linux  GOARCH=386 \
+        go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-386   cmd/golang-docker-build-tutorial/main.go
+    GOOS=linux  GOARCH=amd64 \
+        go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-amd64 cmd/golang-docker-build-tutorial/main.go
+    GOOS=linux  GOARCH=arm \
+        go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm   cmd/golang-docker-build-tutorial/main.go
+    GOOS=linux  GOARCH=arm64 \
+        go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm64 cmd/golang-docker-build-tutorial/main.go
