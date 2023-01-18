@@ -18,6 +18,7 @@ RUN GOOS=linux GOARCH=amd64 \
         -trimpath \
         -ldflags="-w -s -X 'main.Version=1.0.0-alpha'" \
         -o app cmd/golang-docker-build-tutorial/main.go
+RUN go test -cover -v ./...
 
 # Stage 2 (to create a downsized "container executable", ~5MB)
 
