@@ -1,6 +1,6 @@
-# Tutorial: Create a Docker image for a Go application
-
-[![Build Status](https://travis-ci.org/miguno/golang-docker-build-tutorial.svg?branch=master)](https://travis-ci.org/miguno/golang-docker-build-tutorial)
+# Project Template: Create a Docker image for a Go application
+[![Docker workflow status](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml/badge.svg)](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml)
+[![Maven workflow status](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/maven.yml/badge.svg)](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/maven.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A template project to create a Docker image for a Go application.
