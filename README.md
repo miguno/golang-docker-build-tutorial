@@ -68,6 +68,43 @@ $ curl http://localhost:8123/status
 {"status": "idle"}
 ```
 
+# Usage with just
+
+If you have [just](https://github.com/casey/just) installed, you can run the
+commands above more conveniently:
+
+```shell
+$ just
+Available recipes:
+    audit                   # detect known vulnerabilities (requires https://github.com/sonatype-nexus-community/nancy)
+    build                   # build executable for local OS
+    coverage                # show test coverage
+    default                 # print available targets
+    deps                    # show dependencies
+    docker-image-create     # create a docker image (requires Docker)
+    docker-image-run        # run the docker image (requires Docker)
+    docker-image-size       # size of the docker image (requires Docker)
+    evaluate                # evaluate and print all just variables
+    explain lint-identifier # explain lint identifier (e.g., "SA1006")
+    format                  # format source code
+    lint                    # run linters (requires https://github.com/dominikh/go-tools)
+    outdated                # detect outdated modules (requires https://github.com/psampaz/go-mod-outdated)
+    release                 # build release executables for all supported platforms
+    run                     # run executable for local OS
+    send-request-to-app     # send request to the app's HTTP endpoint (requires running container)
+    system-info             # print system information such as OS and architecture
+    test *FLAGS             # run tests with colorized output (requires https://github.com/kyoh86/richgo)
+    test-vanilla *FLAGS     # run tests (vanilla), used for CI workflow
+    tidy                    # add missing module requirements for imported packages, removes requirements that aren't used anymore
+    vulnerabilities         # detect known vulnerabilities (requires https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck)
+```
+
+Example:
+
+```shell
+$ just docker-image-create
+```
+
 # Notes
 
 You can run the Go application locally if you have Go installed.
