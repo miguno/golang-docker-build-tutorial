@@ -5,14 +5,14 @@
 # `-o pipefail`: Prevent errors in a pipeline (`|`) from being masked
 set -uo pipefail
 
-declare -r IMAGE_NAME="miguno/golang-docker-build-tutorial"
-declare -r IMAGE_TAG="latest"
+# Import environment variables from .env
+set -o allexport && source .env && set +o allexport
 
 # Set variable from environment variable PROJECT_VERSION, if the latter exists.
 # If not, fall back to the specified default value (excluding the leading `-`).
 declare -r project_version="${PROJECT_VERSION:-1.0.0-alpha}"
 
-echo "Building image '$IMAGE_NAME:$IMAGE_TAG'..."
+echo "Building image '$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG'..."
 # Use BuildKit, i.e. `buildx build` instead of just `build`
 # https://docs.docker.com/build/
-docker buildx build --build-arg PROJECT_VERSION=${project_version} -t "$IMAGE_NAME":"$IMAGE_TAG" .
+docker buildx build --build-arg PROJECT_VERSION=${project_version} -t "$DOCKER_IMAGE_NAME":"$DOCKER_IMAGE_TAG" .

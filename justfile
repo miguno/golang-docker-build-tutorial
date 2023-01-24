@@ -1,8 +1,11 @@
 # This justfile requires https://github.com/casey/just
 
+# Load environment variables from `.env` file.
+set dotenv-load
+
 timestamp := `date +%s`
 
-semver := "1.0.0-alpha"
+semver := env_var('PROJECT_VERSION')
 commit := `git show -s --format=%h`
 version := semver + "+" + commit
 
@@ -88,13 +91,13 @@ release: test-vanilla
 # create a docker image (requires Docker)
 docker-image-create:
     @echo "Creating a docker image ..."
-    PROJECT_VERSION={{version}} ./create_image.sh
+    @PROJECT_VERSION={{version}} ./create_image.sh
 
 # size of the docker image (requires Docker)
 docker-image-size:
-    docker images $DOCKER_IMAGE_NAME
+    @docker images $DOCKER_IMAGE_NAME
 
 # run the docker image (requires Docker)
 docker-image-run:
     @echo "Running container from docker image ..."
-    ./start_container.sh
+    @./start_container.sh

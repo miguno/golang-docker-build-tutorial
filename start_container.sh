@@ -5,10 +5,9 @@
 # `-o pipefail`: Prevent errors in a pipeline (`|`) from being masked
 set -uo pipefail
 
-declare -r IMAGE_NAME="miguno/golang-docker-build-tutorial"
-declare -r IMAGE_TAG="latest"
-declare -r APP_PORT="8123"
+# Import environment variables from .env
+set -o allexport && source .env && set +o allexport
 
-echo "Starting container for image '$IMAGE_NAME:$IMAGE_TAG', exposing port $APP_PORT/tcp"
-docker run -p "$APP_PORT":"$APP_PORT" "$IMAGE_NAME":"$IMAGE_TAG"
+echo "Starting container for image '$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG', exposing port $DOCKER_APP_PORT/tcp"
+docker run -p "$DOCKER_APP_PORT":"$DOCKER_APP_PORT" "$DOCKER_IMAGE_NAME":"$DOCKER_IMAGE_TAG"
 
