@@ -15,6 +15,10 @@ coverage_profile_log := "coverage_profile.txt"
 default:
     @just --list --justfile {{justfile()}}
 
+# evaluate and print all just variables
+evaluate:
+    @just --evaluate
+
 # format source code
 format:
     @echo "Formatting source code ..."
