@@ -84,3 +84,17 @@ release: test-vanilla
         go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm   cmd/golang-docker-build-tutorial/main.go
     GOOS=linux  GOARCH=arm64 \
         go build -trimpath -ldflags "-X 'main.Version={{version}}' -s -w" -o app_linux-arm64 cmd/golang-docker-build-tutorial/main.go
+
+# create a docker image (requires Docker)
+docker-image-create:
+    @echo "Creating a docker image ..."
+    PROJECT_VERSION={{version}} ./create_image.sh
+
+# size of the docker image (requires Docker)
+docker-image-size:
+    docker images $DOCKER_IMAGE_NAME
+
+# run the docker image (requires Docker)
+docker-image-run:
+    @echo "Running container from docker image ..."
+    ./start_container.sh
