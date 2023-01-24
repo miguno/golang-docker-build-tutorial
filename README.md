@@ -19,6 +19,10 @@ Features:
   [Golang](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/go.yml)
   and
   [Docker](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml)
+* Optionally, uses
+  [just](https://github.com/casey/just)
+  ![](https://img.shields.io/github/stars/casey/just)
+  for running common commands conveniently, see [justfile](justfile).
 
 # Requirements
 
