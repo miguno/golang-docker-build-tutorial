@@ -15,10 +15,7 @@ declare -r project_version="${PROJECT_VERSION:-1.0.0-alpha}"
 echo "Building image '$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG'..."
 # TIP: Add `--progress=plain` to see the full docker output when you are
 # troubleshooting the build setup of your image.
-#
-# Force x86_64 as the platform.  This workaround is needed on Apple Silicon
-# machines.  Details at https://stackoverflow.com/questions/70736928/.
-declare -r DOCKER_OPTIONS="--platform linux/x86_64/v8"
+declare -r DOCKER_OPTIONS=""
 # Use BuildKit, i.e. `buildx build` instead of just `build`
 # https://docs.docker.com/build/
 docker buildx build $DOCKER_OPTIONS --build-arg PROJECT_VERSION=${project_version} -t "$DOCKER_IMAGE_NAME":"$DOCKER_IMAGE_TAG" .
