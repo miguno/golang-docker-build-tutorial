@@ -8,6 +8,8 @@ FROM golang:1.19.5 AS builder
 # smoke test to verify if golang is available
 RUN go version
 
+ARG PROJECT_VERSION
+
 COPY . /go/src/github.com/miguno/golang-docker-build-tutorial/
 WORKDIR /go/src/github.com/miguno/golang-docker-build-tutorial/
 RUN set -Eeux && \
@@ -16,9 +18,9 @@ RUN set -Eeux && \
 
 RUN GOOS=linux GOARCH=amd64 \
     go build \
-        -trimpath \
-        -ldflags="-w -s -X 'main.Version=1.0.0-alpha'" \
-        -o app cmd/golang-docker-build-tutorial/main.go
+    -trimpath \
+    -ldflags="-w -s -X 'main.Version=${PROJECT_VERSION}'" \
+    -o app cmd/golang-docker-build-tutorial/main.go
 RUN go test -cover -v ./...
 
 # Stage 2 (to create a downsized "container executable", ~5MB)

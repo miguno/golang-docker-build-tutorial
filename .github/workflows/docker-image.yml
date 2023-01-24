@@ -11,10 +11,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      PROJECT_VERSION: 1.0.0-alpha
 
     steps:
     - uses: actions/checkout@v3
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker buildx build . --file Dockerfile --tag miguno/golang-docker-build-tutorial:$(date +%s)
+      run: >
+        docker buildx build . 
+        --file Dockerfile
+        --build-arg PROJECT_VERSION="$PROJECT_VERSION"
+        --tag miguno/golang-docker-build-tutorial:$(date +%s)

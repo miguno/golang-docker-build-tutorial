@@ -33,11 +33,11 @@ The resulting image is 5MB in size.
 
 ```shell
 # ***Creating an image may take a few minutes!***
-$ docker build -t miguno/golang-docker-build-tutorial:latest .
+$ docker build --build-arg PROJECT_VERSION=1.0.0-alpha -t miguno/golang-docker-build-tutorial:latest .
 
 # You can also build with the new BuildKit.
 # https://docs.docker.com/build/
-$ docker buildx build -t miguno/golang-docker-build-tutorial:latest .
+$ docker buildx build --build-arg PROJECT_VERSION=1.0.0-alpha -t miguno/golang-docker-build-tutorial:latest .
 ```
 
 Optionally, you can check the size of the generated Docker image:

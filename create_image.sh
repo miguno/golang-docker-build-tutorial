@@ -11,4 +11,4 @@ declare -r IMAGE_TAG="latest"
 echo "Building image '$IMAGE_NAME:$IMAGE_TAG'..."
 # Use BuildKit, i.e. `buildx build` instead of just `build`
 # https://docs.docker.com/build/
-docker buildx build -t "$IMAGE_NAME":"$IMAGE_TAG" .
+docker buildx build --build-arg PROJECT_VERSION=1.0.0-alpha -t "$IMAGE_NAME":"$IMAGE_TAG" .
