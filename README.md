@@ -23,6 +23,8 @@ Features:
   [just](https://github.com/casey/just)
   ![](https://img.shields.io/github/stars/casey/just)
   for running common commands conveniently, see [justfile](justfile).
+* Uses [.env](.env) as central configuration to set variables used by
+  [justfile](justfile) and other helper scripts in this project.
 
 # Requirements
 
