@@ -13,8 +13,12 @@ Features:
 * The Docker build uses a
   [multi-stage build setup](https://docs.docker.com/build/building/multi-stage/)
   to minimize the size of the generated Docker image, which is 5MB
-* Golang 1.19
 * Supports [Docker BuildKit](https://docs.docker.com/build/)
+* Golang 1.19
+* [GitHub Actions workflows](https://github.com/miguno/golang-docker-build-tutorial/actions) for
+  [Golang](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/go.yml)
+  and
+  [Docker](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml)
 
 # Requirements
 
