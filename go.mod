@@ -1,6 +1,6 @@
 module github.com/miguno/golang-docker-build-tutorial
 
-go 1.19
+go 1.22
 
 require (
 	github.com/gorilla/mux v1.8.1
