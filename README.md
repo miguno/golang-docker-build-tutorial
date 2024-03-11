@@ -1,4 +1,6 @@
 # Project Template: Create a Docker image for a Go application
+
+[![GitHub forks](https://img.shields.io/github/forks/miguno/golang-docker-build-tutorial)](https://github.com/miguno/golang-docker-build-tutorial/fork)
 [![Docker workflow status](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml/badge.svg)](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml)
 [![Go workflow status](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/go.yml/badge.svg)](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/go.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -10,20 +12,20 @@ The example application exposes an HTTP endpoint.
 
 Features:
 
-* The Docker build uses a
+- The Docker build uses a
   [multi-stage build setup](https://docs.docker.com/build/building/multi-stage/)
   to minimize the size of the generated Docker image, which is 5MB
-* Supports [Docker BuildKit](https://docs.docker.com/build/)
-* Golang 1.19
-* [GitHub Actions workflows](https://github.com/miguno/golang-docker-build-tutorial/actions) for
+- Supports [Docker BuildKit](https://docs.docker.com/build/)
+- Golang 1.19
+- [GitHub Actions workflows](https://github.com/miguno/golang-docker-build-tutorial/actions) for
   [Golang](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/go.yml)
   and
   [Docker](https://github.com/miguno/golang-docker-build-tutorial/actions/workflows/docker-image.yml)
-* Optionally, uses
+- Optionally, uses
   [just](https://github.com/casey/just)
   ![](https://img.shields.io/github/stars/casey/just)
   for running common commands conveniently, see [justfile](justfile).
-* Uses [.env](.env) as central configuration to set variables used by
+- Uses [.env](.env) as central configuration to set variables used by
   [justfile](justfile) and other helper scripts in this project.
 
 # Requirements
