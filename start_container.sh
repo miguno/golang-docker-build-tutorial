@@ -7,7 +7,6 @@ set -uo pipefail
 
 # Import environment variables from .env
 set -o allexport && source .env && set +o allexport
-
 echo "Starting container for image '$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG', exposing port 8123/tcp"
+echo "Run 'curl http://localhost:8123/status' to send a test request to the containerized app"
 docker run -p 8123:8123 "$DOCKER_IMAGE_NAME":"$DOCKER_IMAGE_TAG"
-
