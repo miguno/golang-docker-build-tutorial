@@ -105,6 +105,7 @@ Example:
 
 ```shell
 $ just docker-image-create
+$ just docker-image-run
 ```
 
 # Notes
