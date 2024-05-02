@@ -6,7 +6,8 @@
 ###############################################################################
 # Stage 1 (to create a "build" image, ~850MB)                                 #
 ###############################################################################
-FROM golang:1.20.5 AS builder
+# Image from https://hub.docker.com/_/golang
+FROM golang:1.22.2 AS builder
 # smoke test to verify if golang is available
 RUN go version
 
