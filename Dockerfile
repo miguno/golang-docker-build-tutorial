@@ -3,7 +3,9 @@
 # We use a multi-stage build setup.
 # (https://docs.docker.com/build/building/multi-stage/)
 
-# Stage 1 (to create a "build" image, ~850MB)
+###############################################################################
+# Stage 1 (to create a "build" image, ~850MB)                                 #
+###############################################################################
 FROM golang:1.20.5 AS builder
 # smoke test to verify if golang is available
 RUN go version
@@ -23,7 +25,9 @@ RUN GOOS=linux GOARCH=amd64 \
     -o app cmd/golang-docker-build-tutorial/main.go
 RUN go test -cover -v ./...
 
-# Stage 2 (to create a downsized "container executable", ~5MB)
+###############################################################################
+# Stage 2 (to create a downsized "container executable", ~5MB)                #
+###############################################################################
 
 # If you need SSL certificates for HTTPS, replace `FROM SCRATCH` with:
 #
