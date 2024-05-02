@@ -4,33 +4,52 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
 
 	internal "github.com/miguno/golang-docker-build-tutorial/internal/pkg"
 )
 
-// Response is just a basic example.
-type Response struct {
+type Server struct {
+	Router *chi.Mux
+	// Other configs such as DB settings can be added here
+}
+
+func CreateNewServer() *Server {
+	s := &Server{}
+	s.Router = chi.NewRouter()
+	// Uncomment to enable logging of incoming HTTP requests to STDOUT.
+	// Requires `import "github.com/go-chi/chi/v5/middleware"`.
+	//s.Router.Use(middleware.Logger)
+	return s
+}
+
+// StatusResponse is just a basic example.
+type StatusResponse struct {
 	Status string `json:"status,omitempty"`
 }
 
-func main() {
-	r := chi.NewRouter()
+func (s *Server) MountHandlers() {
+	// Mount all Middleware here
+	s.Router.Use(middleware.Logger)
 
-	// Uncomment to enable logging of incoming HTTP requests to STDOUT.
-	// Requires `import "github.com/go-chi/chi/v5/middleware"`.
-	//r.Use(middleware.Logger)
-
-	r.Get("/status", func(w http.ResponseWriter, r *http.Request) {
+	// Mount all handlers here
+	s.Router.Get("/status", func(w http.ResponseWriter, r *http.Request) {
 		// Create a Response object
-		var response Response
+		var response StatusResponse
 		if internal.IsIdleToyFunction() {
-			response = Response{Status: "idle"}
+			response = StatusResponse{Status: "idle"}
 		} else {
-			response = Response{Status: "busy"}
+			response = StatusResponse{Status: "busy"}
 		}
 
 		render.JSON(w, r, response)
 	})
-	_ = http.ListenAndServe(":8123", r)
+
+}
+
+func main() {
+	s := CreateNewServer()
+	s.MountHandlers()
+	_ = http.ListenAndServe(":8123", s.Router)
 }
