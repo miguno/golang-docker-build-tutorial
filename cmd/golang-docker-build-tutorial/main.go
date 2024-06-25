@@ -51,5 +51,8 @@ func (s *Server) MountHandlers() {
 func main() {
 	s := CreateNewServer()
 	s.MountHandlers()
-	_ = http.ListenAndServe(":8123", s.Router)
+	err := http.ListenAndServe(":8123", s.Router)
+	if err != nil {
+		panic(err)
+	}
 }
