@@ -115,3 +115,9 @@ docker-image-run:
 # send request to the app's HTTP endpoint (requires running container)
 send-request-to-app:
     curl http://localhost:8123/status
+
+# watch sources for changes and trigger a rebuild (requires https://github.com/watchexec/watchexec)
+watch:
+    # Watch all go files in the current directory and all subdirectories for
+    # changes.  If something changed, re-run the build.
+    @watchexec -e go -- just build
