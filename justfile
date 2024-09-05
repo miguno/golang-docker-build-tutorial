@@ -98,7 +98,7 @@ run:
 
 # send request to the app's HTTP endpoint (requires running container)
 send-request-to-app:
-    curl http://localhost:8123/status
+    @curl http://localhost:${APP_PORT}/status
 
 # run tests with colorized output (requires https://github.com/kyoh86/richgo)
 test *FLAGS:

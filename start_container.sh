@@ -5,8 +5,6 @@
 # `-o pipefail`: Prevent errors in a pipeline (`|`) from being masked
 set -uo pipefail
 
-declare -r APP_PORT=8123
-
 # Import environment variables from .env
 set -o allexport && source .env && set +o allexport
 echo "Starting container for image '$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG', exposing port ${APP_PORT}/tcp"
