@@ -29,6 +29,16 @@ system-info:
 audit:
     go list -json -m all | nancy sleuth --loud
 
+# benchmark the app's HTTP endpoint with plow (requires https://github.com/six-ddc/plow)
+benchmark-plow:
+    @echo plow -c 100 --duration=30s http://localhost:${APP_PORT}/status
+    @plow      -c 100 --duration=30s http://localhost:${APP_PORT}/status
+
+# benchmark the app's HTTP endpoint with wrk (requires https://github.com/wg/wrk)
+benchmark-wrk:
+    @echo wrk -t 10 -c 100 --latency --duration 30 http://localhost:${APP_PORT}/status
+    @wrk      -t 10 -c 100 --latency --duration 30 http://localhost:${APP_PORT}/status
+
 # build executable for local OS
 build: test-vanilla
     @echo "Building executable for local OS ..."
