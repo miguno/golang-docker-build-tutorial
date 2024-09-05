@@ -96,7 +96,7 @@ run:
     @echo "Running golang-docker-build-tutorial with defaults ..."
     go run -ldflags="-X 'main.Version={{version}}'" cmd/golang-docker-build-tutorial/main.go
 
-# send request to the app's HTTP endpoint (requires running container)
+# send request to the app's HTTP endpoint (requires curl and running container)
 send-request-to-app:
     @curl http://localhost:${APP_PORT}/status
 
