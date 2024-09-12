@@ -8,6 +8,8 @@
 A template project to create a Docker image for a Go application.
 The example application exposes an HTTP endpoint.
 
+> [!TIP]
+>
 > **Java developer?** Check out https://github.com/miguno/java-docker-build-tutorial
 
 Features:
