@@ -1,9 +1,9 @@
 module github.com/miguno/golang-docker-build-tutorial
 
-go 1.22
+go 1.24
 
 require (
-	github.com/go-chi/chi/v5 v5.2.4
+	github.com/go-chi/chi/v5 v5.4.0
 	github.com/go-chi/render v1.0.3
 	github.com/stretchr/testify v1.9.0
 )
